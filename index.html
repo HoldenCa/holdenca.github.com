@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Homework</title>
+</head>
+<body>
+    <canvas id="canvas" width="200" height="200"></canvas>
+    <script id="vertex-shader" type="x-shader/x-vertex">
+        attribute vec4 vPosition;
+        void main(void) {
+            gl_Position = vPosition;
+        }
+    </script>
+    <script id="fragment-shader" type="x-shader/x-fragment">
+        precision highp float;
+        void main(void) {
+            gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
+        }
+    </script>
+    <br>
+    <label>Degree: <input id="degree" type="number" step="0.5" value="0.5"/></label>
+    <label>Deep: <input id="deep" type="number" step="1" value="1" min="0" max="8"/></label>
+    <br>
+    <br>
+    <br>
+    <a href="HomeAssignment2/index.html">Home Assignments 2</a>
+    <script src="js/vendor/flatten.js"></script>
+    <script src="js/vendor/initShaders.js"></script>
+    <script src="js/vendor/MV.js"></script>
+    <script src="js/vendor/webgl-utils.js"></script>
+    <script src="js/myApp.js"></script>
+</body>
+</html>
