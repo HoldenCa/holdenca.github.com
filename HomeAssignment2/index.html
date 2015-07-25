@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>home Assignment 2</title>
+    <style>
+        #canvas {
+            border-top: 1px solid grey;
+            background-color: black;
+            cursor: zoom-in;
+        }
+        body {
+            background-color: black;;
+            overflow: hidden;
+            color: white;
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+        }
+
+    </style>
+</head>
+<body>
+    <label style="padding: 10px;">
+        Pick the color
+        <input id="colorPicker" value="#ffff00" type="color" />
+    </label>
+    <canvas width="2000" height="2000" id="canvas"></canvas>
+    <script id="vertex" type="x-shared/x-vertex">
+        attribute vec4 vPosition;
+        void main(void) {
+            gl_Position = vPosition;
+        }
+    </script>
+    <script id="fragment" type="x-shader/x-fragment">
+        precision mediump float;
+        uniform vec4 fLineColour;
+        void main(void) {
+            gl_FragColor = fLineColour;
+        }
+    </script>
+    <script src="webgl-utils.js"></script>
+    <script src="MV.js"></script>
+    <script src="elements.js"></script>
+    <script src="initShaders.js"></script>
+    <script src="myApp.js"></script>
+</body>
+</html>
