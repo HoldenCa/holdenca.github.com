@@ -102,7 +102,7 @@
 		gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 		for (i = 0, len = linesInfo.length; i < len; i++) {
 			setFolatVec4Uniform(program, linesInfo[i].color, 'fLineColour');
-			gl.drawArrays(gl.TRIANGLE_STRIP, linesInfo[i].start, linesInfo[i].count);
+			gl.drawArrays(gl.LINE_STRIP, linesInfo[i].start, linesInfo[i].count);
 		}
 	}
 	/**
@@ -147,7 +147,7 @@
 			}
 		}
 	}
-	modelingSphere(0, 0, 0, 1, 180, 180, 1);
+	modelingSphere(0, 0, 0, 1, 360, 160, 5);
 	/**
 	 *
 	 */
