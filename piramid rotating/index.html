@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Pyramid rotating</title>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <script id="fragment" type="x-shader/x-fragment">
+        precision mediump float;
+        varying vec4 fColor;
+        void main(void) {
+            gl_FragColor = fColor;
+        }
+    </script>
+    <script id="vertex" type="x-shader/x-vertex">
+        attribute vec4 vPoint;
+        attribute vec4 vColor;
+        varying vec4 fColor;
+        void main(void) {
+            fColor = vColor;
+            gl_Position = vPoint;
+        }
+    </script>
+    <script src="../js/vendor/initShaders.js"></script>
+    <script src="../js/vendor/MV.js"></script>
+    <script src="../js/vendor/webgl-utils.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
