@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a568ff76-8504-460e-8ad0-7e6ce9068c52" name="Default" comment="add home assignments 2">
+    <list default="true" id="a568ff76-8504-460e-8ad0-7e6ce9068c52" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sphere/myApp.js" afterPath="$PROJECT_DIR$/sphere/myApp.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -52,8 +52,8 @@
           <file leaf-file-name="myApp.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/sphere/myApp.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.47035176" vertical-offset="2218" max-vertical-offset="4165">
-                  <caret line="158" column="33" selection-start-line="158" selection-start-column="33" selection-end-line="158" selection-end-column="33" />
+                <state vertical-scroll-proportion="0.21327968" vertical-offset="2814" max-vertical-offset="4165">
+                  <caret line="178" column="36" selection-start-line="178" selection-start-column="36" selection-end-line="178" selection-end-column="36" />
                   <folding />
                 </state>
               </provider>
@@ -96,7 +96,7 @@
           <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/sphere/index.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.5614035" vertical-offset="51" max-vertical-offset="1292">
+                <state vertical-scroll-proportion="0.56198347" vertical-offset="51" max-vertical-offset="1292">
                   <caret line="35" column="7" selection-start-line="35" selection-start-column="7" selection-end-line="35" selection-end-column="7" />
                   <folding />
                 </state>
@@ -294,7 +294,19 @@
       <option name="project" value="LOCAL" />
       <updated>1437816368222</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="add home assignments 3">
+      <created>1439323755605</created>
+      <option name="number" value="00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1439323755605</updated>
+    </task>
+    <task id="LOCAL-00004" summary="add home assignments 3">
+      <created>1439323898545</created>
+      <option name="number" value="00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1439323898545</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -338,7 +350,8 @@
       <TodoPanelSettings />
     </option>
     <MESSAGE value="add home assignments 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="add home assignments 2" />
+    <MESSAGE value="add home assignments 3" />
+    <option name="LAST_COMMIT_MESSAGE" value="add home assignments 3" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -694,8 +707,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sphere/myApp.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.47035176" vertical-offset="2218" max-vertical-offset="4165">
-          <caret line="158" column="33" selection-start-line="158" selection-start-column="33" selection-end-line="158" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.21327968" vertical-offset="2814" max-vertical-offset="4165">
+          <caret line="178" column="36" selection-start-line="178" selection-start-column="36" selection-end-line="178" selection-end-column="36" />
           <folding />
         </state>
       </provider>
