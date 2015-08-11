@@ -105,6 +105,78 @@
 			gl.drawArrays(gl.LINE_STRIP, linesInfo[i].start, linesInfo[i].count);
 		}
 	}
+	function modelingConec (xo, yo, zo, r, topr, h, step) {
+		var i, len, lLineInfo;
+		//generateBase
+		lLineInfo = new LineInfoConstructor(points.length, 0 , vec4(Math.random(), 0,  1, 1));
+		linesInfo.push(lLineInfo);
+		for (i = 0, len = 360; i <= len; i += step) {
+			lLineInfo.addPoint();
+			points.push(vec3(
+				xo + r * Math.cos(radians(i)),
+				yo,
+				zo + r * Math.sin(radians(i))
+			));
+			lLineInfo.addPoint();
+			points.push(vec3(
+				xo + r * Math.cos(radians(i + step)),
+				yo,
+				zo + r * Math.sin(radians(i + step))
+			));
+			points.push(vec3(xo, yo, zo));
+			lLineInfo.addPoint();
+		}
+		//top base
+		lLineInfo = new LineInfoConstructor(points.length, 0 , vec4(Math.random(), 0,  1, 1));
+		linesInfo.push(lLineInfo);
+		for (i = 0, len = 360; i <= len; i += step) {
+			lLineInfo.addPoint();
+			points.push(vec3(
+				xo + topr * Math.cos(radians(i)),
+				yo + h,
+				zo + topr * Math.sin(radians(i))
+			));
+			lLineInfo.addPoint();
+			points.push(vec3(
+				xo + topr * Math.cos(radians(i + step)),
+				yo + h,
+				zo + topr * Math.sin(radians(i + step))
+			));
+			points.push(vec3(xo, yo + h, zo));
+			lLineInfo.addPoint();
+
+		}
+		//generateSides
+		lLineInfo = new LineInfoConstructor(points.length, 0 , vec4(Math.random(), 0,  1, 1));
+		linesInfo.push(lLineInfo);
+		for (i = 0, len = 360; i <= len; i += step) {
+			lLineInfo.addPoint();
+			points.push(vec3(
+				xo + r * Math.cos(radians(i)),
+				yo,
+				zo + r * Math.sin(radians(i))
+			));
+			lLineInfo.addPoint();
+			points.push(vec3(
+				xo + r * Math.cos(radians(i + step)),
+				yo,
+				zo + r * Math.sin(radians(i + step))
+			));
+			lLineInfo.addPoint();
+			points.push(vec3(
+				xo + topr * Math.cos(radians(i)),
+				yo + h,
+				zo + topr * Math.sin(radians(i))
+			));
+			lLineInfo.addPoint();
+			points.push(vec3(
+				xo + topr * Math.cos(radians(i + step)),
+				yo + h,
+				zo + topr * Math.sin(radians(i + step))
+			));
+		}
+	}
+	modelingConec(0, -0.4, 0, 0.3, 0.3, 0.8, 5);
 	/**
 	 *
 	 */
@@ -147,7 +219,7 @@
 			}
 		}
 	}
-	modelingSphere(0, 0, 0, 1, 360, 160, 5);
+	//modelingSphere(0, 0, 0, 1, 360, 160, 5);
 	/**
 	 *
 	 */
@@ -159,7 +231,7 @@
 	draw();
 	setInterval(function () {
 		rotateAngels[axesY] += 0.1;
-		rotateAngels[axesX] += 0.1;
+		rotateAngels[axesX] += 0.2;
 		setFolatVec3Uniform(program, rotateAngels, 'theta');
 		//modelingSphere(0, 0, 0, 1);
 		//applyDataToShaderAttribute(program, 'vPosition', points, 3);
