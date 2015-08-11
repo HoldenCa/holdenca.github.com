@@ -219,7 +219,7 @@
 			}
 		}
 	}
-	//modelingSphere(0, 0, 0, 1, 360, 160, 5);
+	modelingSphere(0, 0, 0, 1, 360, 160, 5);
 	/**
 	 *
 	 */
@@ -231,7 +231,7 @@
 	draw();
 	setInterval(function () {
 		rotateAngels[axesY] += 0.1;
-		rotateAngels[axesX] += 0.2;
+		rotateAngels[axesX] += 0.5;
 		setFolatVec3Uniform(program, rotateAngels, 'theta');
 		//modelingSphere(0, 0, 0, 1);
 		//applyDataToShaderAttribute(program, 'vPosition', points, 3);
