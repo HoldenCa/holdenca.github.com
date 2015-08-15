@@ -7,8 +7,15 @@
         body {
             font-family: monospace;
         }
+        canvas {
+            outline: 1px solid black;
+        }
         label {
             margin: 10px;
+        }
+        .disable {
+            pointer-events: none;
+            opacity: .3;
         }
         .ib {
             display: inline-block;
@@ -17,6 +24,8 @@
 </head>
 <body>
 <canvas id="canvas" width="400" height="400"></canvas>
+<br/>
+<b>TO ADD FIGURE, PLEASE SELECT FIGURE'S TYPE AND PUSH BUTTON "Add figure"</b>
 <br/>
 <button id="addButton" class="ib">Add figure</button>
 <label>
@@ -28,16 +37,16 @@
     </select>
 </label>
 <br>
+<b>SELECT FIGURE FOR EDITING</b>
+<br/>
 <label>
     edit figure:
     <select id="showFigure">
         <option selected value="all">none</option>
-        <option value="0">0 - sylinder</option>
-        <option value="1">1 - sphere</option>
     </select>
 </label>
 <br>
-<label id="editor-container">
+<label class="disable" id="editor-container">
     <label>
         drawing mode:
         <select id="drawingMode">

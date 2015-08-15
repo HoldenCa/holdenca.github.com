@@ -288,6 +288,7 @@
 		showFigure.innerHTML = selectionHtml;
 		show = 'all';
 	};
+	var editorContainer = document.getElementById('editor-container');
 	var addButton = document.getElementById('addButton');
 	var showFigure = document.getElementById('showFigure');
 	var drawingMode = document.getElementById('drawingMode');
@@ -304,6 +305,11 @@
 	var figureType = document.getElementById('figureType');
 	showFigure.addEventListener('change', function () {
 		show = showFigure.value;
+		if (show !== 'all') {
+			editorContainer.classList.remove('disable');
+		} else {
+			editorContainer.classList.add('disable');
+		}
 	});
 	addButton.addEventListener('click', function () {
 		switch(figureType.value) {
@@ -318,6 +324,7 @@
 				break;
 		}
 		bidDataWithBuffer(bufferId, points);
+		editorContainer.classList.add('disable');
 		updateAvailableFigures();
 	});
 	drawingMode.addEventListener('change', function () {
