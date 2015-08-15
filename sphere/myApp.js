@@ -102,7 +102,7 @@
 		gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 		for (i = 0, len = linesInfo.length; i < len; i++) {
 			setFolatVec4Uniform(program, linesInfo[i].color, 'fLineColour');
-			gl.drawArrays(gl.LINE_STRIP, linesInfo[i].start, linesInfo[i].count);
+			gl.drawArrays(gl.TRIANGLE_STRIP, linesInfo[i].start, linesInfo[i].count);
 		}
 	}
 	function modelingConec (xo, yo, zo, r, topr, h, step) {
@@ -176,7 +176,7 @@
 			));
 		}
 	}
-	modelingConec(0, -0.4, 0, 0.3, 0, 0.8, 5);
+	modelingConec(-0.2, -0.2, -0.3, 0.3, 0.3, 0.4, 5);
 	/**
 	 *
 	 */
@@ -219,7 +219,7 @@
 			}
 		}
 	}
-	//modelingSphere(0, 0, 0, 1, 360, 160, 5);
+	modelingSphere(0.3, 0, -0.3, 0.3, 360, 180, 5);
 	/**
 	 *
 	 */
@@ -230,7 +230,7 @@
 	 */
 	draw();
 	setInterval(function () {
-		rotateAngels[axesY] += 0.1;
+		rotateAngels[axesY] += 1;
 		rotateAngels[axesX] += 0.5;
 		setFolatVec3Uniform(program, rotateAngels, 'theta');
 		//modelingSphere(0, 0, 0, 1);

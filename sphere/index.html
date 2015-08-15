@@ -7,6 +7,24 @@
 <body>
 <canvas id="canvas" width="400" height="400"></canvas>
 <script id="vertex" type="x-shared/x-vertex">
+        mat4 perspective(float r) {
+            mat4 px = mat4(
+                1, 0, 0, 0,
+                0, 1, 0, 0,
+                0, 0, 1, r,
+                0, 0, 0, 1
+            );
+            return px;
+        }
+        mat4 translation3d(vec3 translation) {
+            mat4 px = mat4(
+                1, 0, 0, 0,
+                0, 1, 0, 0,
+                0, 0, 1, 0,
+                translation.x, translation.y, translation.z, 1
+            );
+            return px;
+        }
           mat4 rotateX(float theta)
         {
             float angle = radians( theta );
@@ -50,9 +68,10 @@
         }
         attribute  vec4 vPosition;
         uniform vec3 theta;
+        uniform vec3 translation;
         void main()
         {
-            gl_Position = rotateZ(theta.z) * rotateY(theta.y) * rotateX(theta.x) * vPosition;
+            gl_Position = perspective(.3) * translation3d(translation)* rotateZ(theta.z) * rotateY(theta.y) * rotateX(theta.x) * vPosition;
         }
 </script>
 <script id="fragment" type="x-shader/x-fragment">
