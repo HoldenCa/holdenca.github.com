@@ -3,15 +3,102 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Homework</title>
+    <style>
+        body {
+            font-family: monospace;
+        }
+        label {
+            margin: 10px;
+        }
+        .ib {
+            display: inline-block;
+        }
+    </style>
 </head>
 <body>
 <canvas id="canvas" width="400" height="400"></canvas>
+<br/>
+<button id="addButton" class="ib">Add figure</button>
+<label>
+    of type:
+    <select id="figureType">
+        <option selected value="sphere">spheres</option>
+        <option value="cone">cones</option>
+        <option value="cylinder">cylinders</option>
+    </select>
+</label>
+<br>
+<label>
+    edit figure:
+    <select id="showFigure">
+        <option selected value="all">none</option>
+        <option value="0">0 - sylinder</option>
+        <option value="1">1 - sphere</option>
+    </select>
+</label>
+<br>
+<label id="editor-container">
+    <label>
+        drawing mode:
+        <select id="drawingMode">
+            <option selected value="TRIANGLE_STRIP">TRIANGLE_STRIP</option>
+            <option value="LINE_STRIP">LINE_STRIP</option>
+            <option value="LINES">LINES</option>
+            <option value="TRIANGLE_FAN">TRIANGLE_FAN</option>
+            <option value="TRIANGLES">TRIANGLES</option>
+        </select>
+    </label>
+    <br>
+    <label>
+        translating:
+        x: <input id="trx" type="range" min="-1" max="1" step="0.01" value="0">
+        y: <input id="try" type="range" min="-1" max="1" step="0.01" value="0">
+        z: <input id="trz" type="range" min="-1" max="1" step="0.01" value="0">
+    </label>
+    <br>
+    <label>
+        rotating:
+        x: <input id="rx" type="range" min="0" max="360" step="1" value="0">
+        y: <input id="ry" type="range" min="0" max="360" step="1" value="0">
+        z: <input id="rz" type="range" min="0" max="360" step="1" value="0">
+    </label>
+    <br>
+    <label>
+        scaling:
+        x: <input id="sx" type="range" min="0" max="10" step="0.1" value="1">
+        y: <input id="sy" type="range" min="0" max="10" step="0.1" value="1">
+        z: <input id="sz" type="range" min="0" max="10" step="0.1" value="1">
+    </label>
+</label>
+
+
+<script>
+    window.requestAnimFrame = (function(){
+        return  window.requestAnimationFrame       ||
+                window.webkitRequestAnimationFrame ||
+                window.mozRequestAnimationFrame    ||
+                window.oRequestAnimationFrame      ||
+                window.msRequestAnimationFrame     ||
+                function(/* function */ callback, /* DOMElement */ element){
+                    window.setTimeout(callback, 1000 / 60);
+                };
+    })();
+</script>
 <script id="vertex" type="x-shared/x-vertex">
         mat4 perspective(float r) {
             mat4 px = mat4(
                 1, 0, 0, 0,
                 0, 1, 0, 0,
                 0, 0, 1, r,
+                0, 0, 0, 1
+            );
+            return px;
+        }
+        mat4 scale(vec3 scale) {
+            mat4 px = mat4(
+                scale.x, 0, 0, 0,
+                0, scale.y, 0, 0,
+                0, 0, scale.z, 0,
                 0, 0, 0, 1
             );
             return px;
@@ -69,9 +156,11 @@
         attribute  vec4 vPosition;
         uniform vec3 theta;
         uniform vec3 translation;
+        uniform vec3 scaling;
         void main()
         {
-            gl_Position = perspective(.3) * translation3d(translation)* rotateZ(theta.z) * rotateY(theta.y) * rotateX(theta.x) * vPosition;
+            gl_Position = perspective(0.4) * translation3d(translation)*
+                rotateZ(theta.z) * rotateY(theta.y) * rotateX(theta.x) * scale(scaling) * vPosition;
         }
 </script>
 <script id="fragment" type="x-shader/x-fragment">

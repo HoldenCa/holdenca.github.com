@@ -1,12 +1,50 @@
 (function () {
-	function LineInfoConstructor (start, count, color) {
+	function LineInfoConstructor (start, color) {
 		this.start = start;
-		this.count = count;
+		this.count = 0;
 		this.color = color;
 	}
-	LineInfoConstructor.prototype.addPoint = function () {
+	LineInfoConstructor.prototype.addPoint = function (point) {
+		points.push(point);
 		this.count++;
 	};
+	var show = 'all';
+	/**
+	 *
+	 */
+	var figures = {
+		currentFigure: null,
+		currentElement: null,
+		figures: [],
+		createFigure: function (type, arg) {
+			this.endFigure();
+			this.currentFigure = {
+				drawingMode: 'LINE_STRIP',
+				type: type,
+				elements: [],
+				translate: [0, 0, 0],
+				rotate: [0, 0, 0],
+				scale: [1, 1, 1],
+				arguments: arg,
+				perspective: Number
+			}
+		},
+		createElement: function (color) {
+			this.currentElement = new LineInfoConstructor(points.length, color);
+			this.currentFigure.elements.push(this.currentElement);
+		},
+		addPoint: function (point) {
+			this.currentElement.addPoint(point);
+		},
+		endFigure: function () {
+			if (this.currentFigure !== null) {
+				this.figures.push(this.currentFigure);
+				this.currentFigure = null;
+				return this.figures.length - 1;
+			}
+		}
+	};
+
 	var canvas = document.getElementById('canvas');
 	var colorPicker = document.getElementById('colorPicker');
 	var gl = WebGLUtils.setupWebGL(canvas);
@@ -97,144 +135,244 @@
 	/**
 	 *
 	 */
-	function draw () {
-		var i, len;
+	function drawFigures () {
 		gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-		for (i = 0, len = linesInfo.length; i < len; i++) {
-			setFolatVec4Uniform(program, linesInfo[i].color, 'fLineColour');
-			gl.drawArrays(gl.TRIANGLE_STRIP, linesInfo[i].start, linesInfo[i].count);
+		if (show === 'all' || true) {
+			figures.figures.forEach(function (elementsInfo) {
+				setFolatVec3Uniform(program, elementsInfo.translate, 'translation');
+				setFolatVec3Uniform(program, elementsInfo.rotate, 'theta');
+				setFolatVec3Uniform(program, elementsInfo.scale, 'scaling');
+				elementsInfo.elements.forEach(function (element) {
+					setFolatVec4Uniform(program, element.color, 'fLineColour');
+					gl.drawArrays(gl[elementsInfo.drawingMode], element.start, element.count);
+				})
+			});
+		} else {
+			setFolatVec3Uniform(program, figures.figures[show].translate, 'translation');
+			figures.figures[show].elements.forEach(function (element) {
+				setFolatVec4Uniform(program, element.color, 'fLineColour');
+				gl.drawArrays(gl[figures.figures[show].drawingMode], element.start, element.count);
+			});
 		}
+
 	}
 	function modelingConec (xo, yo, zo, r, topr, h, step) {
 		var i, len, lLineInfo;
 		//generateBase
-		lLineInfo = new LineInfoConstructor(points.length, 0 , vec4(Math.random(), 0,  1, 1));
-		linesInfo.push(lLineInfo);
+		figures.createFigure(topr === 0 ? 'cone' : 'cylinder', arguments);
+		figures.createElement(vec4(Math.random(), 0,  1, 1));
 		for (i = 0, len = 360; i <= len; i += step) {
-			lLineInfo.addPoint();
-			points.push(vec3(
+			figures.addPoint(vec3(
 				xo + r * Math.cos(radians(i)),
 				yo,
 				zo + r * Math.sin(radians(i))
 			));
-			lLineInfo.addPoint();
-			points.push(vec3(
+			figures.addPoint(vec3(
 				xo + r * Math.cos(radians(i + step)),
 				yo,
 				zo + r * Math.sin(radians(i + step))
 			));
-			points.push(vec3(xo, yo, zo));
-			lLineInfo.addPoint();
+			figures.addPoint(vec3(xo, yo, zo));
 		}
 		//top base
-		lLineInfo = new LineInfoConstructor(points.length, 0 , vec4(Math.random(), 0,  1, 1));
-		linesInfo.push(lLineInfo);
+		figures.createElement(vec4(Math.random(), 0,  1, 1));
 		for (i = 0, len = 360; i <= len; i += step) {
-			lLineInfo.addPoint();
-			points.push(vec3(
+			figures.addPoint(vec3(
 				xo + topr * Math.cos(radians(i)),
 				yo + h,
 				zo + topr * Math.sin(radians(i))
 			));
-			lLineInfo.addPoint();
-			points.push(vec3(
+			figures.addPoint(vec3(
 				xo + topr * Math.cos(radians(i + step)),
 				yo + h,
 				zo + topr * Math.sin(radians(i + step))
 			));
-			points.push(vec3(xo, yo + h, zo));
-			lLineInfo.addPoint();
+			figures.addPoint(vec3(xo, yo + h, zo));
 
 		}
 		//generateSides
-		lLineInfo = new LineInfoConstructor(points.length, 0 , vec4(Math.random(), 0,  1, 1));
-		linesInfo.push(lLineInfo);
+		figures.createElement(vec4(Math.random(), 0,  1, 1));
 		for (i = 0, len = 360; i <= len; i += step) {
-			lLineInfo.addPoint();
-			points.push(vec3(
+			figures.addPoint(vec3(
 				xo + r * Math.cos(radians(i)),
 				yo,
 				zo + r * Math.sin(radians(i))
 			));
-			lLineInfo.addPoint();
-			points.push(vec3(
+			figures.addPoint(vec3(
 				xo + r * Math.cos(radians(i + step)),
 				yo,
 				zo + r * Math.sin(radians(i + step))
 			));
-			lLineInfo.addPoint();
-			points.push(vec3(
+			figures.addPoint(vec3(
 				xo + topr * Math.cos(radians(i)),
 				yo + h,
 				zo + topr * Math.sin(radians(i))
 			));
-			lLineInfo.addPoint();
-			points.push(vec3(
+			figures.addPoint(vec3(
 				xo + topr * Math.cos(radians(i + step)),
 				yo + h,
 				zo + topr * Math.sin(radians(i + step))
 			));
 		}
+		return figures.endFigure();
 	}
-	modelingConec(-0.2, -0.2, -0.3, 0.3, 0.3, 0.4, 5);
 	/**
 	 *
 	 */
-	function modelingSphere (xo, yo, zo, r, logCount, latCount, step) {
+	function modelingSphere (xo, zo, yo, r, logCount, latCount, step) {
 		var lat, long;
 		logCount  = logCount || 360;
 		latCount = latCount || 180;
+		figures.createFigure('sphere', arguments);
 		for (long = 0; long < logCount; long += step) {
-			var lLineInfo = new LineInfoConstructor(points.length, 0 , vec4(Math.random(), 0,  1, 1));
-			linesInfo.push(lLineInfo);
+			figures.createElement(vec4(Math.random(), 0,  1, 1));
 			for(lat = 0; lat < latCount; lat += step) {
-				points.push(vec3(
+				figures.addPoint(vec3(
 					xo + r * Math.sin(radians(lat)) * Math.cos(radians(long)),
 					zo + r * Math.cos(radians(lat)),
 					yo + r * Math.sin(radians(lat)) * Math.sin(radians(long))
 
 				));
-				points.push(vec3(
+				figures.addPoint(vec3(
 					xo + r * Math.sin(radians(lat + step)) * Math.cos(radians(long)),
 					zo + r * Math.cos(radians(lat + step)),
 					yo + r * Math.sin(radians(lat + step)) * Math.sin(radians(long))
 
 				));
-				points.push(vec3(
+				figures.addPoint(vec3(
 					xo + r * Math.sin(radians(lat)) * Math.cos(radians(long + step)),
 					zo + r * Math.cos(radians(lat)),
 					yo + r * Math.sin(radians(lat)) * Math.sin(radians(long + step))
 
 				));
-				points.push(vec3(
+				figures.addPoint(vec3(
 					xo + r * Math.sin(radians(lat + step)) * Math.cos(radians(long + step)),
 					zo + r * Math.cos(radians(lat + step)),
 					yo + r * Math.sin(radians(lat + step)) * Math.sin(radians(long + step))
 
 				));
-				lLineInfo.addPoint();
-				lLineInfo.addPoint();
-				lLineInfo.addPoint();
-				lLineInfo.addPoint();
 			}
 		}
+		return figures.endFigure();
 	}
-	modelingSphere(0.3, 0, -0.3, 0.3, 360, 180, 5);
 	/**
 	 *
 	 */
-	applyDataToShaderAttribute(program, 'vPosition', points, 3);
+	var bufferId = applyDataToShaderAttribute(program, 'vPosition', points, 3).bufferId;
 	setFolatVec3Uniform(program, rotateAngels, 'theta');
 	/**
 	 *
 	 */
-	draw();
-	setInterval(function () {
+	(function animloop(){
 		rotateAngels[axesY] += 1;
-		rotateAngels[axesX] += 0.5;
-		setFolatVec3Uniform(program, rotateAngels, 'theta');
-		//modelingSphere(0, 0, 0, 1);
-		//applyDataToShaderAttribute(program, 'vPosition', points, 3);
-		draw();
-	}, 1000/60);
+		//setFolatVec3Uniform(program, rotateAngels, 'theta');
+		drawFigures();
+		requestAnimFrame(animloop, canvas);
+	})();
+	/**
+	 * interaction part
+	 */
+	var updateAvailableFigures = function () {
+		var optionTemplate = '<option value="index">index - type</option>';
+		var buffer = '';
+		var selectionHtml = '';
+		buffer = optionTemplate.replace(/index/g, 'all');
+		buffer = buffer.replace(/type/g, 'none');
+		selectionHtml+= buffer;
+		figures.figures.forEach(function (figure, index) {
+			buffer = optionTemplate.replace(/index/g, index);
+			buffer = buffer.replace(/type/g,' - ' + figure.type);
+			selectionHtml+= buffer;
+		});
+		console.info(selectionHtml);
+		showFigure.innerHTML = selectionHtml;
+		show = 'all';
+	};
+	var addButton = document.getElementById('addButton');
+	var showFigure = document.getElementById('showFigure');
+	var drawingMode = document.getElementById('drawingMode');
+	var translateX = document.getElementById('trx');
+	var translateY = document.getElementById('try');
+	var translateZ = document.getElementById('trz');
+	var rotateX = document.getElementById('rx');
+	var rotateY = document.getElementById('ry');
+	var rotateZ = document.getElementById('rz');
+	var scaleX = document.getElementById('sx');
+	var scaleY = document.getElementById('sy');
+	var scaleZ = document.getElementById('sz');
+	var approximationStep = document.getElementById('approximationStep');
+	var figureType = document.getElementById('figureType');
+	showFigure.addEventListener('change', function () {
+		show = showFigure.value;
+	});
+	addButton.addEventListener('click', function () {
+		switch(figureType.value) {
+			case 'sphere':
+				modelingSphere(0, 0, 0, 0.5, 360, 180, 5);
+				break;
+			case 'cylinder':
+				modelingConec(0, -0.5, 0, 0.5, 0.5, 1, 5);
+				break;
+			case 'cone':
+				modelingConec(0, -0.5, 0, 0.5, 0, 1, 5);
+				break;
+		}
+		bidDataWithBuffer(bufferId, points);
+		updateAvailableFigures();
+	});
+	drawingMode.addEventListener('change', function () {
+		if (show !== 'all') {
+			console.info(drawingMode.value);
+			figures.figures[show].drawingMode = drawingMode.value;
+		}
+	});
+	translateX.addEventListener('change', function () {
+		if (show !== 'all') {
+			figures.figures[show].translate[0] = translateX.value;
+		}
+	});
+	translateY.addEventListener('change', function () {
+		if (show !== 'all') {
+			figures.figures[show].translate[1] = translateY.value;
+		}
+	});
+	translateZ.addEventListener('change', function () {
+		if (show !== 'all') {
+			figures.figures[show].translate[2] = translateZ.value;
+		}
+	});
+
+	rotateX.addEventListener('change', function () {
+		if (show !== 'all') {
+			figures.figures[show].rotate[0] = rotateX.value;
+		}
+	});
+	rotateY.addEventListener('change', function () {
+		if (show !== 'all') {
+			figures.figures[show].rotate[1] = rotateY.value;
+		}
+	});
+	rotateZ.addEventListener('change', function () {
+		if (show !== 'all') {
+			figures.figures[show].rotate[2] = rotateZ.value;
+		}
+	});
+
+
+
+	scaleX.addEventListener('change', function () {
+		if (show !== 'all') {
+			figures.figures[show].scale[0] = scaleX.value;
+		}
+	});
+	scaleY.addEventListener('change', function () {
+		if (show !== 'all') {
+			figures.figures[show].scale[1] = scaleY.value;
+		}
+	});
+	scaleZ.addEventListener('change', function () {
+		if (show !== 'all') {
+			figures.figures[show].scale[2] = scaleZ.value;
+		}
+	});
 })();
