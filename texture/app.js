@@ -45,8 +45,8 @@ function createLinkedBuffer (program, attrName, dim) {
 	var lat, long;
 	logCount  = logCount || 360;
 	latCount = latCount || 180;
-	for (long = 0; long < logCount; long += step) {
-		for(lat = 0; lat < latCount; lat += step) {
+	for (long = 0; long <= logCount; long += step) {
+		for(lat = 0; lat <= latCount; lat += step) {
 			TEXTURES.push(vec2(long / logCount, lat / latCount));
 			POINTS.push(vec3(
 				xo + r * Math.sin(radians(lat)) * Math.cos(radians(long)),
