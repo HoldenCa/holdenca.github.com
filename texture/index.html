@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Hello World</title>
+    <link rel="stylesheet" type="text/css" href="main.css"/>
+    <script>
+        window.requestAnimFrame = (function(){
+            return  window.requestAnimationFrame       ||
+                    window.webkitRequestAnimationFrame ||
+                    window.mozRequestAnimationFrame    ||
+                    window.oRequestAnimationFrame      ||
+                    window.msRequestAnimationFrame     ||
+                    function(/* function */ callback, /* DOMElement */ element){
+                        window.setTimeout(callback, 1000 / 60);
+                    };
+        })();
+    </script>
+    <script type="x-shader/x-vertex" id="vertexShader">
+        attribute vec4 vPosition;
+        attribute vec3 vNormal;
+        attribute vec2 fTexturesInfo;
+        varying vec2 fTextureCoordinates;
+        varying vec4 fColor;
+        uniform float vRotateY;
+        mat4 perspective(float r) {
+            mat4 px = mat4(
+                1, 0, 0, 0,
+                0, 1, 0, 0,
+                0, 0, 1, r,
+                0, 0, 0, 1
+            );
+            return px;
+        }
+        mat4 scale(vec3 scale) {
+            mat4 px = mat4(
+                scale.x, 0, 0, 0,
+                0, scale.y, 0, 0,
+                0, 0, scale.z, 0,
+                0, 0, 0, 1
+            );
+            return px;
+        }
+        mat4 rotateZ(float theta)
+        {
+            float angle = radians( theta );
+            float c = cos( angle );
+            float s = sin( angle );
+
+            // Remeber: thse matrices are column-major
+             mat4 rz = mat4( c, -s, 0.0, 0.0,
+                    s,  c, 0.0, 0.0,
+                    0.0,  0.0, 1.0, 0.0,
+                    0.0,  0.0, 0.0, 1.0 );
+            return rz;
+        }
+        mat4 rotateX(float theta)
+        {
+            float angle = radians( theta );
+            float c = cos( angle );
+            float s = sin( angle );
+
+            // Remeber: thse matrices are column-major
+            mat4 rx = mat4( 1.0,  0.0,  0.0, 0.0,
+                    0.0,  c,  s, 0.0,
+                    0.0, -s,  c, 0.0,
+                    0.0,  0.0,  0.0, 1.0 );
+            return rx;
+        }
+        mat4 rotateY(float theta)
+        {
+            float angle = radians( theta );
+            float c = cos( angle );
+            float s = sin( angle );
+
+            // Remeber: the matrices are column-major
+            mat4 ry = mat4( c, 0.0, -s, 0.0,
+                    0.0, 1.0,  0.0, 0.0,
+                    s, 0.0,  c, 0.0,
+                    0.0, 0.0,  0.0, 1.0 );
+            return ry;
+        }
+        void main () {
+            fColor = vPosition;
+            fTextureCoordinates = fTexturesInfo;
+            gl_Position = perspective(0.4) * rotateX(0.0)* rotateZ(180.0) * rotateY(vRotateY) * scale(vec3(1.0, 1.005, 1.0)) * vPosition;
+        }
+    </script>
+    <script type="x-shader/x-fragment" id="fragmentShader">
+        precision mediump float;
+        varying vec4 fColor;
+        varying vec2 fTextureCoordinates;
+        uniform sampler2D Tex0;
+        void main () {
+            gl_FragColor = texture2D(Tex0, fTextureCoordinates);
+        }
+    </script>
+    <script src="../js/vendor/initShaders.js"></script>
+    <script src="../js/vendor/MV.js"></script>
+    <script src="../js/vendor/webgl-utils.js"></script>
+</head>
+<body>
+    <canvas width="512" height="512" id="canvas"></canvas>
+    <script src="app.js"></script>
+</body>
+</html>
