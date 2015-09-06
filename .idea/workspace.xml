@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a568ff76-8504-460e-8ad0-7e6ce9068c52" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/texture/index.html" afterPath="$PROJECT_DIR$/texture/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/texture/app.js" afterPath="$PROJECT_DIR$/texture/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="holdenca.github.com.iws" />
@@ -29,11 +29,11 @@
     <splitter split-orientation="horizontal" split-proportion="0.9">
       <split-first>
         <leaf>
-          <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+          <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/texture/index.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.2462077" vertical-offset="1064" max-vertical-offset="1972">
-                  <caret line="86" column="153" selection-start-line="86" selection-start-column="153" selection-end-line="86" selection-end-column="153" />
+                <state vertical-scroll-proportion="14.769231" vertical-offset="707" max-vertical-offset="1972">
+                  <caret line="30" column="27" selection-start-line="30" selection-start-column="27" selection-end-line="30" selection-end-column="27" />
                   <folding>
                     <element signature="n#script#0;n#head#0;n#html#0;n#!!top" expanded="false" />
                   </folding>
@@ -41,11 +41,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/texture/app.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-8.793103" vertical-offset="2516" max-vertical-offset="3485">
-                  <caret line="163" column="61" selection-start-line="163" selection-start-column="61" selection-end-line="163" selection-end-column="61" />
+                <state vertical-scroll-proportion="0.72426033" vertical-offset="2822" max-vertical-offset="3859">
+                  <caret line="202" column="9" selection-start-line="202" selection-start-column="9" selection-end-line="202" selection-end-column="9" />
                   <folding />
                 </state>
               </provider>
@@ -68,7 +68,7 @@
           <file leaf-file-name="main.css" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/texture/main.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.30804077" vertical-offset="0" max-vertical-offset="883">
+                <state vertical-scroll-proportion="0.3112128" vertical-offset="0" max-vertical-offset="874">
                   <caret line="16" column="23" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
                   <folding />
                 </state>
@@ -102,8 +102,8 @@
         <option value="$PROJECT_DIR$/sphere/myApp.js" />
         <option value="$PROJECT_DIR$/sphere/index.html" />
         <option value="$PROJECT_DIR$/texture/main.css" />
-        <option value="$PROJECT_DIR$/texture/app.js" />
         <option value="$PROJECT_DIR$/texture/index.html" />
+        <option value="$PROJECT_DIR$/texture/app.js" />
       </list>
     </option>
   </component>
@@ -111,10 +111,9 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="x" value="953" />
+    <option name="width" value="974" />
+    <option name="height" value="1047" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -402,11 +401,17 @@
       <option name="project" value="LOCAL" />
       <updated>1441533842106</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="add home assignments 5 update 2">
+      <created>1441534042223</created>
+      <option name="number" value="00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1441534042223</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="953" y="0" width="974" height="1047" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -415,7 +420,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24657534" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22542734" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -450,7 +455,8 @@
     <MESSAGE value="add home assignments 4" />
     <MESSAGE value="add home assignments 5" />
     <MESSAGE value="add home assignments 5 update 1" />
-    <option name="LAST_COMMIT_MESSAGE" value="add home assignments 5 update 1" />
+    <MESSAGE value="add home assignments 5 update 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="add home assignments 5 update 2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -836,7 +842,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/texture/main.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.30804077" vertical-offset="0" max-vertical-offset="883">
+        <state vertical-scroll-proportion="0.3112128" vertical-offset="0" max-vertical-offset="874">
           <caret line="16" column="23" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
           <folding />
         </state>
@@ -850,21 +856,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/texture/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.793103" vertical-offset="2516" max-vertical-offset="3485">
-          <caret line="163" column="61" selection-start-line="163" selection-start-column="61" selection-end-line="163" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/texture/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2462077" vertical-offset="1064" max-vertical-offset="1972">
-          <caret line="86" column="153" selection-start-line="86" selection-start-column="153" selection-end-line="86" selection-end-column="153" />
+        <state vertical-scroll-proportion="14.769231" vertical-offset="707" max-vertical-offset="1972">
+          <caret line="30" column="27" selection-start-line="30" selection-start-column="27" selection-end-line="30" selection-end-column="27" />
           <folding>
             <element signature="n#script#0;n#head#0;n#html#0;n#!!top" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/texture/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.72426033" vertical-offset="2822" max-vertical-offset="3859">
+          <caret line="202" column="9" selection-start-line="202" selection-start-column="9" selection-end-line="202" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -153,20 +153,38 @@ function animLoop () {
 	draw();
 	window.requestAnimFrame(animLoop, canvas);
 }
+var useTouch;
 var listeners = {
 	click: 'click',
 	mouseDown: 'mousedown',
 	mouseMove: 'mousemove',
 	mouseUp: 'mouseup'
 };
-
+if (!document.body.onclick) {
+	useTouch = true
+	listeners = {
+		click: 'touchstart',
+		mouseDown: 'touchstart',
+		mouseMove: 'touchmove',
+		mouseUp: 'touchend'
+	}
+}
 var menu = document.getElementById('menu');
 var radioButtons = document.getElementsByClassName('texture-filter');
 canvas.addEventListener(listeners.mouseDown, function (event) {
-	var prevX = event.pageX, prevY = event.pageY;
+	if (useTouch) {
+		event.pageX = event.touches[0].pageX;
+		event.pageY = event.touches[0].pageY;
+	}
+	var prevX = event.pageX,
+		prevY = event.pageY;
 	var sensitivity = 180 / canvas.width;
 	acceleration = [0, 0, 0];
 	var onMouseUp = function () {
+		if (useTouch) {
+			event.pageX = event.touches[0].pageX;
+			event.pageY = event.touches[0].pageY;
+		}
 		var dX = prevX - event.pageX;
 		var dY = prevY - event.pageY;
 		if (Math.abs(dX) > 200) {
@@ -179,6 +197,10 @@ canvas.addEventListener(listeners.mouseDown, function (event) {
 		window.removeEventListener(listeners.mouseMove, onMove);
 	};
 	var onMove = function (event) {
+		if (useTouch) {
+			event.pageX = event.touches[0].pageX;
+			event.pageY = event.touches[0].pageY;
+		}
 		var dX = prevX - event.pageX;
 		var dY = prevY - event.pageY;
 		angels[1] -= dX * sensitivity;
