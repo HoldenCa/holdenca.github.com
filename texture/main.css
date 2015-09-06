@@ -3,7 +3,8 @@
     margin: 0 auto;
     display: block;
 }
-html {
+html, body {
+    overflow: hidden;
     user-select: none;
     -webkit-user-select: none;
     background-color: black;
