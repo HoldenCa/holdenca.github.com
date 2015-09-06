@@ -159,14 +159,7 @@ var listeners = {
 	mouseMove: 'mousemove',
 	mouseUp: 'mouseup'
 };
-if (!document.onclick) {
-	listeners = {
-		click: 'touchstart',
-		mouseDown: 'touchstart',
-		mouseMove: 'touchmove',
-		mouseUp: 'touchend'
-	}
-}
+
 var menu = document.getElementById('menu');
 var radioButtons = document.getElementsByClassName('texture-filter');
 canvas.addEventListener(listeners.mouseDown, function (event) {

@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a568ff76-8504-460e-8ad0-7e6ce9068c52" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/texture/app.js" afterPath="$PROJECT_DIR$/texture/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/texture/index.html" afterPath="$PROJECT_DIR$/texture/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="holdenca.github.com.iws" />
@@ -45,8 +44,8 @@
           <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/texture/app.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.33333334" vertical-offset="2499" max-vertical-offset="3604">
-                  <caret line="164" column="32" selection-start-line="164" selection-start-column="32" selection-end-line="164" selection-end-column="32" />
+                <state vertical-scroll-proportion="0.13725491" vertical-offset="2618" max-vertical-offset="3485">
+                  <caret line="161" column="0" selection-start-line="161" selection-start-column="0" selection-end-line="161" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -391,7 +390,13 @@
       <option name="project" value="LOCAL" />
       <updated>1441526769619</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="add home assignments 5 update 1">
+      <created>1441533699734</created>
+      <option name="number" value="00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1441533699734</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -851,8 +856,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/texture/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334" vertical-offset="2499" max-vertical-offset="3604">
-          <caret line="164" column="32" selection-start-line="164" selection-start-column="32" selection-end-line="164" selection-end-column="32" />
+        <state vertical-scroll-proportion="0.13725491" vertical-offset="2618" max-vertical-offset="3485">
+          <caret line="161" column="0" selection-start-line="161" selection-start-column="0" selection-end-line="161" selection-end-column="0" />
           <folding />
         </state>
       </provider>
