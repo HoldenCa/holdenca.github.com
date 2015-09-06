@@ -1,6 +1,18 @@
 #canvas {
     border: 1px solid grey;
+    margin: 0 auto;
+    display: block;
 }
 html {
+    user-select: none;
+    -webkit-user-select: none;
     background-color: black;
+    color: #acb3a3;;
+}
+label {
+    display: block;
+    cursor: pointer;
+}
+#menu {
+    position: absolute;
 }

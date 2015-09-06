@@ -5,6 +5,7 @@ var POINTS = [];
 var NORMALS = POINTS;
 var angleY = 0;
 var TEXTURES = [];
+var angels = [0.0, 0.0, 0.0];
 gl.useProgram(program);
 gl.viewport(0, 0, canvas.width, canvas.height);
 gl.clearColor( 0.0, 0.0,0.0, 1.0 );
@@ -76,7 +77,20 @@ function createLinkedBuffer (program, attrName, dim) {
 
 		}
 	}
-})(0, 0, 0, 0.6, 360, 180, 5);
+})(0, 0, 0, 0.6, 360, 180, 1);
+/**
+ *
+ * @param texture
+ * @param image
+ */
+function setupTexture (texture, image, filter) {
+	gl.bindTexture( gl.TEXTURE_2D, texture );
+	gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+	gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
+	gl.generateMipmap( gl.TEXTURE_2D );
+	gl.texParameteri( gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl[filter]);
+	gl.texParameteri( gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl[filter]);
+}
 /**
  * init textures
  * @type {Image}
@@ -86,17 +100,10 @@ var image1 = new Image();
 image1.src = 'texture1.jpg';
 image1.onload =function () {
 	texture1 = gl.createTexture();
-	gl.bindTexture( gl.TEXTURE_2D, texture1 );
-	gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
-	gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image1);
-	//gl.generateMipmap( gl.TEXTURE_2D );
-	gl.texParameteri( gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR );
-	gl.texParameteri( gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-
+	setupTexture(texture1, image1, 'LINEAR');
 	gl.activeTexture( gl.TEXTURE0 );
-	gl.bindTexture( gl.TEXTURE_2D, texture1 );
+	gl.bindTexture( gl.TEXTURE_2D, texture1);
 	gl.uniform1i(gl.getUniformLocation( program, "Tex0"), 0);
-
 	animLoop();
 };
 /**
@@ -109,13 +116,13 @@ assignDataToBuffer(vPosition, POINTS);
 assignDataToBuffer(vNormal, NORMALS);
 assignDataToBuffer(fTexturesInfo, TEXTURES);
 gl.uniform1f(gl.getUniformLocation(program, 'vRotateY'), angleY);
+gl.uniform3fv(gl.getUniformLocation(program, 'vAngels'), angels);
 /**
  * draw
  */
 function draw () {
 	angleY -= 0.2;
 	gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-	console.info(angleY);
 	gl.uniform1f(gl.getUniformLocation(program,'vRotateY'), angleY);
 	gl.drawArrays(gl.TRIANGLE_STRIP, 0, POINTS.length);
 }
@@ -126,3 +133,17 @@ function animLoop () {
 	draw();
 	window.requestAnimFrame(animLoop, canvas);
 }
+var listeners = {
+	click: 'click'
+};
+var menu = document.getElementById('menu');
+var radioButtons = document.getElementsByClassName('texture-filter');
+menu.addEventListener(listeners.click, function () {
+	var i, len;
+	for (i = 0, len = radioButtons.length; i < len; i++) {
+		if (radioButtons[i].checked === true) {
+			setupTexture(texture1, image1, radioButtons[i].value);
+			break;
+		}
+	}
+});
