@@ -176,11 +176,15 @@ canvas.addEventListener(listeners.mouseDown, function (event) {
 		event.pageX = event.touches[0].pageX;
 		event.pageY = event.touches[0].pageY;
 	}
+	event.preventDefault();
+	event.stopPropagation();
 	var prevX = event.pageX,
 		prevY = event.pageY;
 	var sensitivity = 180 / canvas.width;
 	acceleration = [0, 0, 0];
 	var onMouseUp = function () {
+		event.preventDefault();
+		event.stopPropagation();
 		if (useTouch) {
 			event.pageX = event.touches[0].pageX;
 			event.pageY = event.touches[0].pageY;
@@ -197,6 +201,8 @@ canvas.addEventListener(listeners.mouseDown, function (event) {
 		window.removeEventListener(listeners.mouseMove, onMove);
 	};
 	var onMove = function (event) {
+		event.preventDefault();
+		event.stopPropagation();
 		if (useTouch) {
 			event.pageX = event.touches[0].pageX;
 			event.pageY = event.touches[0].pageY;

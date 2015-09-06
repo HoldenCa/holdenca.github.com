@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a568ff76-8504-460e-8ad0-7e6ce9068c52" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/texture/main.css" afterPath="$PROJECT_DIR$/texture/main.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/texture/app.js" afterPath="$PROJECT_DIR$/texture/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="holdenca.github.com.iws" />
@@ -26,7 +26,7 @@
     <favorites_list name="holdenca.github.com" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.23586208">
+    <splitter split-orientation="horizontal" split-proportion="0.7241379">
       <split-first>
         <leaf>
           <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
@@ -44,8 +44,8 @@
           <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/texture/app.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="1.4485207" vertical-offset="2006" max-vertical-offset="3859">
-                  <caret line="190" column="39" selection-start-line="190" selection-start-column="39" selection-end-line="190" selection-end-column="39" />
+                <state vertical-scroll-proportion="0.64378697" vertical-offset="2924" max-vertical-offset="3961">
+                  <caret line="204" column="32" selection-start-line="204" selection-start-column="32" selection-end-line="204" selection-end-column="32" />
                   <folding />
                 </state>
               </provider>
@@ -68,7 +68,7 @@
           <file leaf-file-name="main.css" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/texture/main.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.076662906" vertical-offset="0" max-vertical-offset="887">
+                <state vertical-scroll-proportion="0.0778032" vertical-offset="0" max-vertical-offset="874">
                   <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
                   <folding />
                 </state>
@@ -102,8 +102,8 @@
         <option value="$PROJECT_DIR$/sphere/myApp.js" />
         <option value="$PROJECT_DIR$/sphere/index.html" />
         <option value="$PROJECT_DIR$/texture/index.html" />
-        <option value="$PROJECT_DIR$/texture/app.js" />
         <option value="$PROJECT_DIR$/texture/main.css" />
+        <option value="$PROJECT_DIR$/texture/app.js" />
       </list>
     </option>
   </component>
@@ -413,7 +413,13 @@
       <option name="project" value="LOCAL" />
       <updated>1441534856533</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="add home assignments 5 update 2">
+      <created>1441534962601</created>
+      <option name="number" value="00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1441534962601</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -864,18 +870,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/texture/app.js">
+    <entry file="file://$PROJECT_DIR$/texture/main.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.4485207" vertical-offset="2006" max-vertical-offset="3859">
-          <caret line="190" column="39" selection-start-line="190" selection-start-column="39" selection-end-line="190" selection-end-column="39" />
+        <state vertical-scroll-proportion="0.0778032" vertical-offset="0" max-vertical-offset="874">
+          <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/texture/main.css">
+    <entry file="file://$PROJECT_DIR$/texture/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.076662906" vertical-offset="0" max-vertical-offset="887">
-          <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
+        <state vertical-scroll-proportion="0.64378697" vertical-offset="2924" max-vertical-offset="3961">
+          <caret line="204" column="32" selection-start-line="204" selection-start-column="32" selection-end-line="204" selection-end-column="32" />
           <folding />
         </state>
       </provider>
