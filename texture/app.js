@@ -6,6 +6,8 @@ var NORMALS = POINTS;
 var angleY = 0;
 var TEXTURES = [];
 var angels = [0.0, 0.0, 0.0];
+var acceleration = [0.0, -2.0, 0.0];
+var resistance = [0.01, 0.008, 0.01];
 gl.useProgram(program);
 gl.viewport(0, 0, canvas.width, canvas.height);
 gl.clearColor( 0.0, 0.0,0.0, 1.0 );
@@ -122,9 +124,27 @@ gl.uniform3fv(gl.getUniformLocation(program, 'vAngels'), angels);
  */
 function draw () {
 	angleY -= 0.2;
+	angels[0] += acceleration[0];
+	angels[1] += acceleration[1];
+	angels[2] += acceleration[2];
+	countAngels();
 	gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 	gl.uniform1f(gl.getUniformLocation(program,'vRotateY'), angleY);
+	gl.uniform3fv(gl.getUniformLocation(program, 'vAngels'), angels);
 	gl.drawArrays(gl.TRIANGLE_STRIP, 0, POINTS.length);
+}
+function countAngels () {
+	var len = 3, i, abs, multiplier;
+	for (i = 0; i < len; i ++) {
+		abs = Math.abs(acceleration[i]);
+		multiplier = acceleration[i] < 0 ? -1 : 1;
+		abs -= resistance[i];
+		if (abs < 0) {
+			abs = 0;
+		} else {
+			acceleration[i] = multiplier * abs;
+		}
+	}
 }
 /**
  * animation loop
@@ -134,10 +154,48 @@ function animLoop () {
 	window.requestAnimFrame(animLoop, canvas);
 }
 var listeners = {
-	click: 'click'
+	click: 'click',
+	mouseDown: 'mousedown',
+	mouseMove: 'mousemove',
+	mouseUp: 'mouseup'
 };
+if (!document.onclick) {
+	listeners = {
+		click: 'touchstart',
+		mouseDown: 'touchstart',
+		mouseMove: 'touchmove',
+		mouseUp: 'touchend'
+	}
+}
 var menu = document.getElementById('menu');
 var radioButtons = document.getElementsByClassName('texture-filter');
+canvas.addEventListener(listeners.mouseDown, function (event) {
+	var prevX = event.pageX, prevY = event.pageY;
+	var sensitivity = 180 / canvas.width;
+	acceleration = [0, 0, 0];
+	var onMouseUp = function () {
+		var dX = prevX - event.pageX;
+		var dY = prevY - event.pageY;
+		if (Math.abs(dX) > 200) {
+			acceleration[1] = dX / 200;
+		}
+		if (Math.abs(dY) > 200) {
+			acceleration[0] = -(dY / 200);
+		}
+		window.removeEventListener(listeners.mouseUp, onMouseUp);
+		window.removeEventListener(listeners.mouseMove, onMove);
+	};
+	var onMove = function (event) {
+		var dX = prevX - event.pageX;
+		var dY = prevY - event.pageY;
+		angels[1] -= dX * sensitivity;
+		angels[0] += dY * sensitivity;
+		prevX = event.pageX;
+		prevY = event.pageY;
+	};
+	window.addEventListener(listeners.mouseMove, onMove);
+	window.addEventListener(listeners.mouseUp, onMouseUp);
+});
 menu.addEventListener(listeners.click, function () {
 	var i, len;
 	for (i = 0, len = radioButtons.length; i < len; i++) {
