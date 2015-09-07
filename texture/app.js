@@ -160,8 +160,8 @@ var listeners = {
 	mouseMove: 'mousemove',
 	mouseUp: 'mouseup'
 };
-if (!document.body.onclick) {
-	useTouch = true
+if (document.body.onclick !== null) {
+	useTouch = true;
 	listeners = {
 		click: 'touchstart',
 		mouseDown: 'touchstart',
