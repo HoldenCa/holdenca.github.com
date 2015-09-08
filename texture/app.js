@@ -79,7 +79,7 @@ function createLinkedBuffer (program, attrName, dim) {
 
 		}
 	}
-})(0, 0, 0, 0.6, 360, 180, 1);
+})(0, 0, 0, 0.6, 360, 180, 5);
 /**
  *
  * @param texture
