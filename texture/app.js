@@ -192,7 +192,7 @@ canvas.addEventListener(listeners.mouseDown, function (event) {
 		var dX = prevX - event.pageX;
 		var dY = prevY - event.pageY;
 		if (Math.abs(dX) > 200) {
-			acceleration[1] = dX / 200;
+			acceleration[1] = -dX / 200;
 		}
 		if (Math.abs(dY) > 200) {
 			acceleration[0] = -(dY / 200);
@@ -209,7 +209,7 @@ canvas.addEventListener(listeners.mouseDown, function (event) {
 		}
 		var dX = prevX - event.pageX;
 		var dY = prevY - event.pageY;
-		angels[1] -= dX * sensitivity;
+		angels[1] += dX * sensitivity;
 		angels[0] += dY * sensitivity;
 		prevX = event.pageX;
 		prevY = event.pageY;

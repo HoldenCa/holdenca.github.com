@@ -84,7 +84,7 @@
         void main () {
             fColor = vPosition;
             fTextureCoordinates = fTexturesInfo;
-            gl_Position = perspective(0.4) * rotateX(10.0 + vAngels.x)* rotateZ(180.0 + vAngels.z) * rotateY(vRotateY + vAngels.y) * scale(vec3(1.0, 1.05, 1.0)) * vPosition;
+            gl_Position = perspective(0.4) * rotateX(10.0 + vAngels.x)* rotateZ(vAngels.z) * rotateY(vRotateY + vAngels.y) * scale(vec3(1.0, -1.05, 1.0)) * vPosition;
         }
     </script>
     <script type="x-shader/x-fragment" id="fragmentShader">
